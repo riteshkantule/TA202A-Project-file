@@ -39,8 +39,8 @@ void loop() {
     }
 
     switch(IrReceiver.decodedIRData.command) {
-      //Default Remote
-      case 0x18 : //Paste your command Value here
+      // Remote 1
+      case 0x18 : 
       Serial.println ("Move Forward");
       Forward();
       break;
@@ -73,7 +73,7 @@ void loop() {
       fullSpeed();
       break;
       
-      //TV Remote
+      // Remote 2
       // case 0x16:
       // Serial.println("Move Forward");
       // Forward();
