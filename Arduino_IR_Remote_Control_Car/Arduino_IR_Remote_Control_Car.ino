@@ -1,4 +1,3 @@
-
 #include<Arduino.h>
 #include<IRremote.h>
 #define IR_RECEIVE_PIN 11
@@ -16,7 +15,7 @@ int motorSpeedB = 0;
 void setup () {
   
   Serial.begin (115200);
-  Serial.println(F("START " __FILE__ " from " __DATE__ "\r\nUsing library version " VERSION_IRREMOTE));
+  Serial.println(F("START " _FILE_ " from " _DATE_ "\r\nUsing library version " VERSION_IRREMOTE));
   IrReceiver.begin(IR_RECEIVE_PIN, ENABLE_LED_FEEDBACK, USE_DEFAULT_FEEDBACK_LED_PIN);
   Serial.print(F("Ready to receive IR signals at pin "));
   Serial.println(IR_RECEIVE_PIN);
@@ -39,73 +38,41 @@ void loop() {
     }
 
     switch(IrReceiver.decodedIRData.command) {
-      // Remote 1
-      case 0x18 : 
+      //Default Remote
+      case 0x3 : //Paste your command Value here
       Serial.println ("Move Forward");
       Forward();
       break;
-      case 0x52:
+      case 0x2:
       Serial.println("Move Backward");
       Backward();
       break;
-      case 0x8:
+      case 0xE:
       Serial.println("Turn Left");
       Left();
       break;
-      case 0x5A:
+      case 0x1A:
       Serial.println("Turn Right");
       Right();
       break;
-      case 0x1C:
+      case 0x7:
       Serial.println("Stop");
       Stop();
       break;
-      case 0x45:
+      case 0x9:
       Serial.println("normal Speed");
       normalSpeed();
       break;
-      case 0x46:
+      case 0x1D:
       Serial.println("medium Speed");
       mediumSpeed();
       break;
-      case 0x47:
+      case 0xD:
       Serial.println("full Speed");
       fullSpeed();
       break;
       
-      // Remote 2
-      // case 0x16:
-      // Serial.println("Move Forward");
-      // Forward();
-      // break;
-      // case 0x24:
-      // Serial.println("Move Backward");
-      // Backward();
-      // break;
-      // case 0x21:
-      // Serial.println("Turn Left");
-      // Left();
-      // break;
-      // case 0x23:
-      // Serial.println("Turn Right");
-      // Right();
-      // break;
-      // case 0x25:
-      // Serial.println("Stop");
-      // Stop();
-      // break;
-      // case 0x10:
-      // Serial.println("normal Speed");
-      // normalSpeed();
-      // break;
-      // case 0x20:
-      // Serial.println("medium Speed");
-      // mediumSpeed();
-      // break;
-      // case 0x30:
-      // Serial.println("full Speed");
-      // fullSpeed();
-      // break;
+    
       
     }
     
@@ -171,5 +138,5 @@ void mediumSpeed() {
 
 void fullSpeed() {
   motorSpeedA = 255;
-  motorSpeedB = 255;
+  motorSpeedB = 255;
 }
